@@ -1,25 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+  CssBaseline,
+  ThemeProvider,
+} from "@mui/material";
+import { createTheme } from "@mui/material/styles";
+import WebRouter from "./routes/WebRouter";
+import AuthProvider from "./contexts/AuthContext/AuthContext";
+import GlobalWrapper from "./components/GlobalWrapper";
+import GlobalProvider from "./contexts/GlobalContext/GlobalContext";
 
 function App() {
+  const theme = createTheme();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <GlobalProvider>
+            <AuthProvider>
+                <GlobalWrapper>
+                    <WebRouter />
+                </GlobalWrapper>
+            </AuthProvider>
+        </GlobalProvider>
+      </ThemeProvider>
   );
 }
 
