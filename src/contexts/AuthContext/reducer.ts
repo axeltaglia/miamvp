@@ -1,10 +1,10 @@
-import {REDUCER_ACTION_TYPE, ReducerAction, AuthType} from "./types"
+import { AuthType, REDUCER_ACTION_TYPE, ReducerAction } from "./types";
 
 export const reducer = (state: AuthType, action: ReducerAction): AuthType => {
-    switch (action.type) {
-        case REDUCER_ACTION_TYPE.SET_AUTH_TOKEN:
-            return { ...state, authToken: action.payload }
-        default:
-            throw new Error()
-    }
-}
+  switch (action.type) {
+    case REDUCER_ACTION_TYPE.SET_AUTH_TOKEN:
+      return { ...state, authToken: action.payload };
+    default:
+      throw new Error();
+  }
+};
