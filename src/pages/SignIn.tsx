@@ -14,6 +14,8 @@ import { useState, ChangeEvent, useCallback } from "react"
 import { useAuth } from "../contexts/AuthContext/AuthContext"
 import { useNavigate } from "react-router-dom"
 import { Alert } from "@mui/material"
+import {AxiosError} from "axios";
+import {getErrorMessage} from "../utils";
 
 function SignIn() {
     const {signIn} = useAuth()
@@ -32,11 +34,12 @@ function SignIn() {
 
     const handleSubmit = async (event: any) => {
         event.preventDefault()
-        await signIn(username, password).then(() => {
+        try {
+            await signIn(username, password)
             navigate('/home')
-        }).catch((e) => {
-            setError(e.response.data)
-        })
+        } catch(e:any) {
+            setError(getErrorMessage(e))
+        }
     }
 
     return (
